@@ -1,0 +1,48 @@
+<div align=center>
+	<mat-form-field>
+	  <input matInput [matDatepicker]="picker1" placeholder="Дата с" [(ngModel)]="date1" (ngModelChange)="checkRange(1)">
+	  <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+	  <mat-datepicker #picker1></mat-datepicker>
+	</mat-form-field>
+
+	<mat-form-field >
+	  <input matInput [matDatepicker]="picker2" placeholder="Дата по"[(ngModel)]="date2" (ngModelChange)="checkRange(2)">
+	  <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+	  <mat-datepicker #picker2></mat-datepicker>
+	</mat-form-field>
+
+	<mat-form-field>
+	  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Фильтровать">
+	</mat-form-field>
+	<button mat-raised-button color="primary" (click)="run()">Сформировать</button>
+    <span>{{errorMes}}</span>
+</div>
+<mat-card>
+  <div class="mat-elevation-z8">
+	<table mat-table [dataSource]="dataSource" matSort>
+	  <ng-container matColumnDef="date">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header>Дата</th>
+		<td mat-cell *matCellDef="let row"> {{row.date | date:"longDate"}} </td>
+	  </ng-container>
+
+	  <ng-container matColumnDef="USD">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header>USD</th>
+		<td mat-cell *matCellDef="let row"> {{row.USD}} </td>
+	  </ng-container>
+
+	  <ng-container matColumnDef="EUR">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header>EUR</th>
+		<td mat-cell *matCellDef="let row"> {{row.EUR}} </td>
+	  </ng-container>
+
+	  <ng-container matColumnDef="GBP">
+		<th mat-header-cell *matHeaderCellDef mat-sort-header>GBP</th>
+		<td mat-cell *matCellDef="let row"> {{row.GBP}} </td>
+	  </ng-container>
+
+	  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+	  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+	</table>
+	<mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+  </div>
+</mat-card>

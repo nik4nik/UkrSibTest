@@ -1,0 +1,27 @@
+mat-form-field {
+  width: 14%;
+  margin-right: 14px;
+  font-size: 14px;
+  }
+
+table {
+    width: 100%;
+    border: 2px solid black;
+  }
+
+th {
+    border: 1px solid black;
+    font-weight: bold;
+    background:lightgrey;
+    width: 25%;
+  }
+
+td {
+    border: 1px solid black;
+    width: 25%;
+
+  }
+
+th.mat-header-cell, td.mat-cell {
+    padding-left: 8px;
+}
